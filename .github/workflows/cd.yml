@@ -24,7 +24,7 @@ jobs:
             sudo git reset --hard origin/main
             sudo git pull origin main
             
-            rsync -av --delete /var/www/repos/website/ /var/www/html/website/
+            cp -r /var/www/repos/website/ /var/www/html/website/
             
             sudo chown -R www-data:www-data /var/www/html/website
             sudo chmod -R 755 /var/www/html/website
