@@ -20,19 +20,13 @@ jobs:
           username: ${{ secrets.VM_USERNAME }}
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
-            echo "Switching to repo directory..."
             cd /var/www/repos/website || exit 1
+            sudo git reset --hard origin/main
+            sudo git pull origin main
             
-            echo "Pulling latest changes..."
-            git reset --hard origin/main
-            git pull origin main
-            
-            echo "Syncing to NGINX directory..."
             rsync -av --delete /var/www/repos/website/ /var/www/html/website/
             
-            echo "Setting permissions..."
             sudo chown -R www-data:www-data /var/www/html/website
             sudo chmod -R 755 /var/www/html/website
             
-            echo "Restarting NGINX..."
             sudo systemctl restart nginx
