@@ -24,6 +24,6 @@ jobs:
             sudo git reset --hard origin/main
             sudo git pull origin main
             
-            sudo cp -r /var/www/repos/website/ /var/www/html/website/
+            sudo cp -r /var/www/repos/website/index.html /var/www/html/website/
                         
             sudo systemctl restart nginx
